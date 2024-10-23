@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/nav_graph"
+	app:startDestination="@id/home2" >
+
+	<fragment
+		android:id="@+id/home2"
+		android:name="com.example.bottle_flip.view.fragment.Home"
+		android:label="Home"
+		tools:layout="@layout/home" >
+		<action
+			android:id="@+id/action_home2_to_game"
+			app:destination="@id/game" />
+	</fragment>
+	<fragment
+		android:id="@+id/game"
+		android:name="com.example.bottle_flip.view.fragment.Game"
+		android:label="Game"
+		tools:layout="@layout/game" >
+		<action
+			android:id="@+id/action_game_to_challenges"
+			app:destination="@id/challenges" />
+		<action
+			android:id="@+id/action_game_to_instructions"
+			app:destination="@id/instructions" />
+	</fragment>
+	<fragment
+		android:id="@+id/challenges"
+		android:name="com.example.bottle_flip.view.fragment.Challenges"
+		android:label="Challenges"
+		tools:layout="@layout/challenges" >
+		<action
+			android:id="@+id/action_challenges_to_game"
+			app:destination="@id/game" />
+	</fragment>
+	<fragment
+		android:id="@+id/instructions"
+		android:name="com.example.bottle_flip.view.fragment.Instructions"
+		android:label="Instructions"
+		tools:layout="@layout/instructions" >
+		<action
+			android:id="@+id/action_instructions_to_game"
+			app:destination="@id/game" />
+	</fragment>
+</navigation>
