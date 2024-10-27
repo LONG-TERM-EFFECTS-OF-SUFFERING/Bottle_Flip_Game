@@ -29,7 +29,7 @@ class Instructions : Fragment() {
         // Load gif winner using Glide
         Glide.with(this)
             .asGif()
-            .load(R.drawable.win_animated)
+            .load(R.drawable.win_animated_transparent)
             .into(binding.ivAnimatedWin)
 
         // Configuration of back button
