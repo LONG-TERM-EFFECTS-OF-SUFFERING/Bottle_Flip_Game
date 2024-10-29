@@ -2,6 +2,13 @@
 <resources>
 	<color name="black">#FF000000</color>
 	<color name="white">#FFFFFFFF</color>
+<<<<<<< Updated upstream
 	<color name="orange">#FFA500</color>
 	<color name="transparent">#00000000</color>
+=======
+	<color name="colorPrimary">#6200EE</color>
+	<color name="colorPrimaryDark">#3700B3</color>
+	<color name="colorAccent">#03DAC5</color>
+	<color name="orange">#FFA500</color>
+>>>>>>> Stashed changes
 </resources>
