@@ -84,4 +84,5 @@ dependencies {
     implementation ("androidx.room:room-ktx:2.5.2")
     ksp("androidx.room:room-compiler:2.5.2")
     implementation ("com.getbase:floatingactionbutton:1.10.1")
+    implementation(kotlin("script-runtime"))
 }
