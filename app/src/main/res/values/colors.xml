@@ -2,28 +2,6 @@
 <resources>
 	<color name="black">#FF000000</color>
 	<color name="white">#FFFFFFFF</color>
-
-	<color name="color_palette_black">#1C1C1C</color>
-	<color name="color_palette_bright_black">#888888</color>
-
-	<color name="color_palette_red">#AF5F5F</color>
-	<color name="color_palette_bright_red">#FFB0B0</color>
-
-	<color name="color_palette_green">#5F875F</color>
-	<color name="color_palette_bright_green">#A8D8A8</color>
-
-	<color name="color_palette_yellow">#87875F</color>
-	<color name="color_palette_bright_yellow">#FFFFC2</color>
-
-	<color name="color_palette_blue">#5F87AF</color>
-	<color name="color_palette_bright_blue">#A0C8FF</color>
-
-	<color name="color_palette_magenta">#5F5F87</color>
-	<color name="color_palette_bright_magenta">#A0A0D8</color>
-
-	<color name="color_palette_cyan">#5F8787</color>
-	<color name="color_palette_bright_cyan">#88D8D8</color>
-
-	<color name="color_palette_white">#6C6C6C</color>
-	<color name="color_palette_bright_white">#FFFFFF</color>
+	<color name="orange">#FF3D00</color>
+	<color name="transparent">#00000000</color>
 </resources>
