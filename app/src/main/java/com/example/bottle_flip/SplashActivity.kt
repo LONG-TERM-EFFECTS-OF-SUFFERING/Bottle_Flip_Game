@@ -1,18 +1,17 @@
 package com.example.bottle_flip
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
-import com.example.bottle_flip.R
-import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
-
 
 class SplashActivity : AppCompatActivity() {
-//private val playViewModel : PlayViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,9 +35,10 @@ class SplashActivity : AppCompatActivity() {
                         or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
             }
         }
-
-
-        //  playViewModel.splashScreen(this)
-
+        // Espera de 5 segundos antes de continuar al Home
+        Handler(Looper.getMainLooper()).postDelayed({
+            startActivity(Intent(this, MainActivity::class.java))
+            finish() // Finaliza la actividad de splash
+        }, 5000) // 5000 milisegundos = 5 segundos
     }
 }
