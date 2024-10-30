@@ -13,6 +13,7 @@ class Home : Fragment() {
     private lateinit var binding: HomeBinding
 
     override fun onCreateView(
+
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
