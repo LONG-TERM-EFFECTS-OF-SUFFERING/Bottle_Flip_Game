@@ -6,14 +6,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.bottle_flip.ChallengeAdapter
+import androidx.lifecycle.ViewModelProvider
+import com.example.bottle_flip.viewmodel.ChallengeViewModel
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var fabAddChallenge: FloatingActionButton
     private lateinit var challengeAdapter: ChallengeAdapter
+    private lateinit var challengeViewModel: ChallengeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        challengeViewModel = ViewModelProvider(this).get(ChallengeViewModel::class.java)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_challenges)
 
@@ -28,15 +32,31 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.recyclerViewRetos)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        challengeAdapter = ChallengeAdapter(mutableListOf())
+        challengeAdapter = ChallengeAdapter(mutableListOf<Challenge>(), supportFragmentManager)
         recyclerView.adapter = challengeAdapter
 
         fabAddChallenge = findViewById(R.id.fabAddChallenge)
         fabAddChallenge.setOnClickListener {
-            val dialog = AgregarRetoDialog(this) { reto ->
-                challengeAdapter.addChallenge(reto)
+            val dialog = AgregarRetoDialog ()
+            dialog.setListener { challenge ->
+                challengeAdapter.addChallenge(challenge)
             }
-            dialog.show()
+            dialog.show(supportFragmentManager, "AgregarRetoFragment") // Muestra el fragmento
         }
     }
+    /*private fun observerListInventory(){
+
+        challengeViewModel.getListChallenge()
+        challengeViewModel.listChallenge.observe(this){ listcChallenge ->
+            val recycler = binding.recyclerview
+            val layoutManager =LinearLayoutManager(context)
+            recycler.layoutManager = layoutManager
+            val adapter = ChallengeAdapter(listInventory, findNavController())
+            recycler.adapter = adapter
+            adapter.notifyDataSetChanged()
+
+        }
+
+    }*/
+
 }

@@ -1,5 +1,6 @@
 package com.example.bottle_flip.data
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -19,6 +20,7 @@ abstract class challengeDB : RoomDatabase() {
                 challengeDB::class.java,
                 NAME_BD
             ).build()
+
         }
     }
 }
