@@ -50,6 +50,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+
     implementation(libs.androidx.navigation.fragment.ktx)
 
     implementation(libs.androidx.room.runtime)
@@ -62,4 +63,7 @@ dependencies {
     implementation(libs.converter.gson)
 
     implementation(libs.glide)
+
+    //AnimacionLottie
+    implementation("com.airbnb.android:lottie:5.2.0")
 }
