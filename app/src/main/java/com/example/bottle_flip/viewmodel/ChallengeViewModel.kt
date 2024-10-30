@@ -44,6 +44,7 @@ class ChallengeViewModel(application: Application) : AndroidViewModel(applicatio
             _progresState.value = true
             try {
                 _listChallenge.value = challengeRepository.getListChallenge()
+                Log.d("ChallengeViewModel", "List of challenges: ${_listChallenge.value}")
                 _progresState.value = false
             } catch (e: Exception) {
                 _progresState.value = false

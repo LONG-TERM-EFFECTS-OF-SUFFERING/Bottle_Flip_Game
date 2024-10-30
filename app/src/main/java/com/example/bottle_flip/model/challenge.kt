@@ -12,6 +12,6 @@ data class challenge(
     val description: String
 ): Serializable {
     init {
-        Log.d("Model", "Challenge created: $description")
+        Log.d("Model123", "Challenge created: $description")
     }
 }

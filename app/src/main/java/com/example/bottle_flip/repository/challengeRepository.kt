@@ -8,6 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class challengeRepository(val context: Context){
+
     private var challengeDao:challengeDao = challengeDB.getDatabase(context).challengeDao()
 
      suspend fun savechallenge(challenge:challenge){
@@ -19,13 +20,16 @@ class challengeRepository(val context: Context){
 
     suspend fun getListChallenge():MutableList<challenge>{
         return withContext(Dispatchers.IO){
-            challengeDao.getListchallenge()
+            val challenges = challengeDao.getListchallenge()
+            Log.d("ChallengeRepository", challenges.toString()) // Imprimir aquí
+            challenges
         }
     }
 
     suspend fun deletechallenge(challenge: challenge){
         withContext(Dispatchers.IO){
             challengeDao.deletechallenge(challenge)
+
         }
     }
 

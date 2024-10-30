@@ -6,33 +6,32 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Window
 import androidx.fragment.app.DialogFragment
-import com.example.bottle_flip.databinding.EditChallengeDialogBinding
+import com.example.bottle_flip.databinding.DeleteChallengeDialogBinding
 
 
 
 
-class EditChallengeDialog : DialogFragment() {
+class DeleteChangeDialog: DialogFragment() {
 
-    private lateinit var binding: EditChallengeDialogBinding
+    private lateinit var binding: DeleteChallengeDialogBinding
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = AlertDialog.Builder(requireContext())
 
         // Inflar el layout existente y obtener el binding
-        binding = EditChallengeDialogBinding.inflate(LayoutInflater.from(context))
+        binding = DeleteChallengeDialogBinding.inflate(LayoutInflater.from(context))
 
         // Referenciar los elementos del layout usando el binding
-        val editTextChallenge = binding.etDescripcionReto
-        val buttonCancel = binding.btnCancelar
-        val buttonSave = binding.btnGuardar
+        val editTextChallenge = binding.deleteDescription
+        val buttonSi = binding.btnSi
+        val buttonNo = binding.btnNo
 
-        // Configurar el botón Cancelar
-        buttonCancel.setOnClickListener {
+        // Configurar el botón si
+        buttonSi.setOnClickListener {
             dismiss()  // Cierra el diálogo
         }
 
-        // Configurar el botón Guardar
-        buttonSave.setOnClickListener {
-            // Aquí puedes guardar los cambios en SQLite
+        // Configurar el botón no
+        buttonNo.setOnClickListener {
             dismiss()  // Cierra el diálogo
         }
 

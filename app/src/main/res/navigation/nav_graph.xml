@@ -3,7 +3,7 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/nav_graph"
-	app:startDestination="@id/game" >
+	app:startDestination="@id/challenges" >
 
 	<fragment
 		android:id="@+id/home2"
@@ -28,12 +28,23 @@
 	</fragment>
 	<fragment
 		android:id="@+id/challenges"
-		android:name="com.example.bottle_flip.view.fragment.Challenges"
+		android:name="com.example.bottle_flip.view.fragment.Challenge"
 		android:label="Challenges"
 		tools:layout="@layout/challenges" >
 		<action
 			android:id="@+id/action_challenges_to_game"
 			app:destination="@id/game" />
+		<action
+			android:id="@+id/action_challenges_to_agregarRetoDialog" />
+		<action
+			android:id="@+id/action_challenges_to_editChallengeDialog"
+			app:destination="@id/editChallengeDialog" />
+		<action
+			android:id="@+id/action_challenges_to_deleteChangeDialog"
+			app:destination="@id/deleteChangeDialog" />
+		<action
+			android:id="@+id/action_challenges_to_addChangeDialog"
+			app:destination="@id/addChangeDialog" />
 	</fragment>
 	<fragment
 		android:id="@+id/instructions"
@@ -44,4 +55,16 @@
 			android:id="@+id/action_instructions_to_game"
 			app:destination="@id/game" />
 	</fragment>
+	<dialog
+		android:id="@+id/editChallengeDialog"
+		android:name="com.example.bottle_flip.view.fragment.EditChallengeDialog"
+		android:label="EditChallengeDialog" />
+	<dialog
+		android:id="@+id/deleteChangeDialog"
+		android:name="com.example.bottle_flip.view.fragment.DeleteChangeDialog"
+		android:label="DeleteChangeDialog" />
+	<dialog
+		android:id="@+id/addChangeDialog"
+		android:name="com.example.bottle_flip.view.fragment.AddChangeDialog"
+		android:label="AddChangeDialog" />
 </navigation>
