@@ -31,7 +31,7 @@ class Instructions : Fragment() {
         val toolbar = binding.contentToolbar.toolbar
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener {
-            findNavController().navigate(R.id.action_instructions_to_game)
+            findNavController().popBackStack()
         }
 
         // Load gif winner using Glide
