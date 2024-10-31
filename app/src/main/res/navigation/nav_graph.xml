@@ -34,9 +34,9 @@
 		<action
 			android:id="@+id/action_challenges_to_game"
 			app:destination="@id/game" />
-		<action
+		<!--<action
 			android:id="@+id/action_challenges_to_agregarRetoDialog"
-            app:destination="@id/add_challenge" />/>
+            app:destination="@id/add_challenge" />-->
 		<action
 			android:id="@+id/action_challenges_to_editChallengeDialog"
 			app:destination="@id/editChallengeDialog" />
@@ -59,11 +59,19 @@
 	<dialog
 		android:id="@+id/editChallengeDialog"
 		android:name="com.example.bottle_flip.view.fragment.EditChallengeDialog"
-		android:label="EditChallengeDialog" />
+		android:label="EditChallengeDialog" >
+		<action
+			android:id="@+id/action_edit_to_challenges"
+			app:destination="@id/challenges" />
+	</dialog>
 	<dialog
 		android:id="@+id/deleteChangeDialog"
 		android:name="com.example.bottle_flip.view.fragment.DeleteChangeDialog"
-		android:label="DeleteChangeDialog" />
+		android:label="DeleteChangeDialog">
+		<action
+			android:id="@+id/action_delete_to_challenges"
+			app:destination="@id/challenges" />
+	</dialog>
 	<fragment
 		android:id="@+id/addChangeDialog"
 		android:name="com.example.bottle_flip.view.fragment.AddChangeDialog"

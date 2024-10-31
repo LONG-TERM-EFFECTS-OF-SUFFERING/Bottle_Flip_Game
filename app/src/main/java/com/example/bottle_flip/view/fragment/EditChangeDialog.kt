@@ -47,7 +47,8 @@ class EditChallengeDialog : DialogFragment() {
         buttonSave.setOnClickListener {
             Log.d("upDateDebug", "inicio")
             updateChallenge()
-            dismiss()  // Cierra el diálogo
+            findNavController().navigate(R.id.action_edit_to_challenges)
+            //dismiss()  // Cierra el diálogo
         }
 
         // Configurar el diálogo
@@ -63,8 +64,6 @@ class EditChallengeDialog : DialogFragment() {
         binding.etDescripcionReto.hint = receivedChallenge.description
 
     }
-
-
 
     private fun updateChallenge(){
         val receivedBundle = arguments

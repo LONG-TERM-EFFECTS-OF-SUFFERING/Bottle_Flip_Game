@@ -18,7 +18,6 @@ class ChallengeViewModel(application: Application) : AndroidViewModel(applicatio
     val context = getApplication<Application>()
     private val challengeRepository = challengeRepository(context)
 
-
     private val _listChallenge = MutableLiveData<MutableList<Challenge>>()
     val listChallenge: LiveData<MutableList<Challenge>> get() = _listChallenge
 

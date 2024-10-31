@@ -37,7 +37,7 @@ class Challenge : Fragment() {
             findNavController().popBackStack()
         }
         binding.fabAddChallenges.setOnClickListener {
-            findNavController().navigate(R.id.action_challenges_to_add_challenge)
+            findNavController().navigate(R.id.action_challenges_to_addChangeDialog)
         }
     }
 

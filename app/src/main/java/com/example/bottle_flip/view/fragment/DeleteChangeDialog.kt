@@ -8,10 +8,11 @@ import android.view.LayoutInflater
 import android.view.Window
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.bottle_flip.R
 import com.example.bottle_flip.databinding.DeleteChallengeDialogBinding
 import com.example.bottle_flip.model.Challenge
 import com.example.bottle_flip.viewmodel.ChallengeViewModel
-
 
 class DeleteChangeDialog: DialogFragment() {
 
@@ -32,7 +33,8 @@ class DeleteChangeDialog: DialogFragment() {
         // Configurar el botón si
         buttonSi.setOnClickListener {
             deleteChallenge()
-            dismiss()  // Cierra el diálogo
+            findNavController().navigate(R.id.action_delete_to_challenges)
+            //dismiss()  // Cierra el diálogo
         }
 
         // Configurar el botón no
