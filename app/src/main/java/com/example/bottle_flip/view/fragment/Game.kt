@@ -80,15 +80,11 @@ class Game : Fragment() {
         navController = Navigation.findNavController(view)
         //Calificar app
         binding.icMenu.btnStarBorder.setOnClickListener {
-            val nequiIcon = view.findViewById<ImageView>(R.id.btn_star_border)
-            nequiIcon.setOnClickListener {
-                // URL del enlace
-                val url = "https://play.google.com/store/apps/details?id=com.nequi.MobileApp&hl=es_419&gl=es"
-                // Intent para abrir la URL en un navegador o en la app de Google Play Store
-                val intent = Intent(Intent.ACTION_VIEW).apply {
-                    data = Uri.parse(url)
-                }
-                startActivity(intent) // Abre el enlace
+            val appPackageName = "com.nequi.MobileApp" // Replace with your app's package name
+            try {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$appPackageName")))
+            } catch (e: android.content.ActivityNotFoundException) {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")))
             }
         }
         //Como se juega
@@ -117,19 +113,20 @@ class Game : Fragment() {
         }
         //Compartir app
         binding.icMenu.btnShare.setOnClickListener {
-            val shareButton = view.findViewById<ImageView>(R.id.btn_share)
-            shareButton.setOnClickListener {
-                // Enlace de la aplicación en Google Play Store
-                val appPackageName = "com.nequi.MobileApp&hl=es_419&gl=es&pli=1" // Reemplaza con tu propio package name
-                val playStoreLink = "https://play.google.com/store/apps/details?id=$appPackageName"
-                val shareMessage = "App Bottle Flip\nSolo los valientes lo juegan!!\n$playStoreLink"
-                // Configura el Intent de compartir
-                val shareIntent = Intent(Intent.ACTION_SEND).apply {
-                    type = "text/plain"
-                    putExtra(Intent.EXTRA_TEXT, shareMessage)
-                }
-                startActivity(Intent.createChooser(shareIntent, "Compartir aplicación"))
+            val sendIntent = Intent().apply {
+                action = Intent.ACTION_SEND
+
+                val appTitle = "App pico botella"
+                val slogan = "Solo los valientes lo juegan !!"
+                val downloadUrl = "https://play.google.com/store/apps/details?id=com.nequi.MobileApp&hl=es_419&gl=es"
+                val message = "$appTitle\n$slogan\n$downloadUrl"
+
+                putExtra(Intent.EXTRA_TEXT, message)
+                type = "text/plain"
             }
+
+            val shareIntent = Intent.createChooser(sendIntent, "Share app via")
+            it.context.startActivity(shareIntent)
         }
 
         //Girar botella
