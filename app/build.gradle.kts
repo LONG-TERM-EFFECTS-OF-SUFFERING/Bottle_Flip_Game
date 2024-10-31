@@ -87,6 +87,8 @@ dependencies {
 
     implementation(libs.glide)
 
+    implementation(libs.androidx.coordinatorlayout)
+
     //AnimacionLottie
     implementation("com.airbnb.android:lottie:5.2.0")
 }
