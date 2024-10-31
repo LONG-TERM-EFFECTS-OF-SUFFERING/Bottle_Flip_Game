@@ -29,7 +29,7 @@ class EditChallengeDialog : DialogFragment() {
 
         // Inflar el layout existente y obtener el binding
         binding = EditChallengeDialogBinding.inflate(LayoutInflater.from(context))
-
+        dataChallenge()
         // Referenciar los elementos del layout usando el binding
         val editTextChallenge = binding.etDescripcionReto
         val buttonCancel = binding.btnCancelar
@@ -57,11 +57,20 @@ class EditChallengeDialog : DialogFragment() {
         return dialog.create()
     }
 
+    private fun dataChallenge() {
+        val receivedBundle = arguments
+        receivedChallenge = receivedBundle?.getSerializable("clave") as Challenge
+        binding.etDescripcionReto.hint = receivedChallenge.description
+
+    }
+
+
 
     private fun updateChallenge(){
-
+        val receivedBundle = arguments
+        receivedChallenge = receivedBundle?.getSerializable("clave") as Challenge
         val description = binding.etDescripcionReto.text.toString()
-        val id = 1
+        val id = receivedChallenge.id
         val challenge = Challenge(id, description)
         Log.d("upDateDebug", challenge.toString())
         challengeViewModel.updateChallenge(challenge)

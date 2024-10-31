@@ -16,14 +16,13 @@ class ChallengeViewHolder(binding: ItemRetoBinding, navController: NavController
 
         bindingItem.btnEliminar.setOnClickListener {
             val bundle = Bundle()
-           // val description = bindingItem.descripcion
-            //bundle.putString("descripcion", description)
+            bundle.putSerializable("clave", challenge)
             navController.navigate(R.id.deleteChangeDialog, bundle)
         }
 
         bindingItem.btnEditar.setOnClickListener {
             val bundle = Bundle()
-            //bundle.putSerializable("clave", challenge)
+            bundle.putSerializable("clave", challenge)
             navController.navigate(R.id.editChallengeDialog, bundle)
         }
     }

@@ -16,13 +16,14 @@ import com.example.bottle_flip.viewmodel.ChallengeViewModel
 class DeleteChangeDialog: DialogFragment() {
 
     private val challengeViewModel: ChallengeViewModel by viewModels()
+    private lateinit var receivedChallenge: Challenge
     private lateinit var binding: DeleteChallengeDialogBinding
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = AlertDialog.Builder(requireContext())
 
         // Inflar el layout existente y obtener el binding
         binding = DeleteChallengeDialogBinding.inflate(LayoutInflater.from(context))
-
+        dataChallenge()
         // Referenciar los elementos del layout usando el binding
         val editTextChallenge = binding.deleteDescription
         val buttonSi = binding.btnSi
@@ -47,10 +48,18 @@ class DeleteChangeDialog: DialogFragment() {
         return dialog.create()
     }
 
-    private fun deleteChallenge(){
+    private fun dataChallenge() {
+        val receivedBundle = arguments
+        receivedChallenge = receivedBundle?.getSerializable("clave") as Challenge
+        binding.deleteDescription.text = receivedChallenge.description
 
+    }
+
+    private fun deleteChallenge(){
+        val receivedBundle = arguments
+        receivedChallenge = receivedBundle?.getSerializable("clave") as Challenge
         val description = binding.deleteDescription.text.toString()
-        val id = 1
+        val id = receivedChallenge.id
         val challenge = Challenge(id, description)
         Log.d("deleteDebug", challenge.toString())
         challengeViewModel.deleteChallenge(challenge)

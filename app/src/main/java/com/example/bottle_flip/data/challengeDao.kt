@@ -13,17 +13,13 @@ import com.example.bottle_flip.model.Challenge
 interface ChallengeDao {
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveChallenge(challenge: Challenge){
-        Log.d("Dao", challenge.toString())
-    }
+    suspend fun saveChallenge(challenge: Challenge)
 
     @Query("SELECT * FROM challenge")
     suspend fun getListchallenge(): MutableList<Challenge>
 
     @Delete
-    suspend fun deletechallenge(challenge: Challenge){
-        Log.d("deleteDao", challenge.toString())
-    }
+    suspend fun deletechallenge(challenge: Challenge)
 
     @Update
     suspend fun updatechallenge(challenge: Challenge)
