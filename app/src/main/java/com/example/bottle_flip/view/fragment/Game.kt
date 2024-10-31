@@ -113,6 +113,7 @@ class Game : Fragment() {
         //Consultar y mostrar reto
         binding.icMenu.btnAdd.setOnClickListener {
             findNavController().navigate(R.id.action_game_to_challenges)
+            statusShowDialog(false)
         }
         //Compartir app
         binding.icMenu.btnShare.setOnClickListener {
@@ -171,6 +172,7 @@ class Game : Fragment() {
                 //audioShowChallenge.start()
                 audioSpinBottle.pause()
                 showCountdown()
+                audioBackground.start()
                 //audioButton.pause()
             }
        }
