@@ -35,12 +35,9 @@ class EditChallengeDialog : DialogFragment() {
         val buttonCancel = binding.btnCancelar
         val buttonSave = binding.btnGuardar
 
-
-
         // Configurar el botón Cancelar
         buttonCancel.setOnClickListener {
             dismiss()  // Cierra el diálogo
-            findNavController().popBackStack()
         }
 
         // Configurar el botón Guardar
