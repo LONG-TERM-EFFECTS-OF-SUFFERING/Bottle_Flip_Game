@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.bottle_flip.databinding.DialogChallengeBinding
+import com.example.bottle_flip.view.fragment.Game
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -46,6 +47,12 @@ class ChallengeDialog {
             binding.btnClose.setOnClickListener {
                 Toast.makeText(context, "Reto cerrado", Toast.LENGTH_SHORT).show()
                 alertDialog.dismiss()
+            }
+
+            alertDialog.setOnDismissListener {
+                if (fragment is Game) {
+                    fragment.statusShowDialog(false)
+                }
             }
 
             alertDialog.show()

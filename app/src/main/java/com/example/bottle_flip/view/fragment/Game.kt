@@ -23,6 +23,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import com.example.bottle_flip.Dialogs.ChallengeDialog
 import com.example.bottle_flip.databinding.GameBinding
 
 class Game : Fragment() {
@@ -243,8 +244,14 @@ class Game : Fragment() {
             override fun onFinish() {
                 binding.countdownText.text = "0" // Muestra 0 al final
                 binding.countdownText.visibility = View.GONE
+                showChallengeDialog()
+//                _statusShowDialog.value = true
             }
         }.start() // Inicia el temporizador
+    }
+
+    private fun showChallengeDialog(){
+        ChallengeDialog.showDialogChallenge(requireContext(), this)
     }
 
     fun statusShowDialog(status: Boolean) {
