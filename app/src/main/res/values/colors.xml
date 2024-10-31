@@ -5,4 +5,5 @@
 	<color name="orange">#FF3D00</color>
 	<color name="transparent">#00000000</color>
 	<color name="btn_spin">#FF3D00</color>
+	<color name="background">#414141</color>
 </resources>
