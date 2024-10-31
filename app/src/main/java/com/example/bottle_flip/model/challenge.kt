@@ -6,12 +6,9 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity
-data class challenge(
+data class Challenge(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val description: String
-): Serializable {
-    init {
-        Log.d("Model123", "Challenge created: $description")
-    }
-}
+)
+

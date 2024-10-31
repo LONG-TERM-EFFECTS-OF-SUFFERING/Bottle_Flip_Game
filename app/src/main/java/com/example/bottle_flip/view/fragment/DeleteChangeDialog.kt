@@ -3,16 +3,19 @@ package com.example.bottle_flip.view.fragment
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Window
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
 import com.example.bottle_flip.databinding.DeleteChallengeDialogBinding
-
-
+import com.example.bottle_flip.model.Challenge
+import com.example.bottle_flip.viewmodel.ChallengeViewModel
 
 
 class DeleteChangeDialog: DialogFragment() {
 
+    private val challengeViewModel: ChallengeViewModel by viewModels()
     private lateinit var binding: DeleteChallengeDialogBinding
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = AlertDialog.Builder(requireContext())
@@ -27,11 +30,13 @@ class DeleteChangeDialog: DialogFragment() {
 
         // Configurar el botón si
         buttonSi.setOnClickListener {
+            deleteChallenge()
             dismiss()  // Cierra el diálogo
         }
 
         // Configurar el botón no
         buttonNo.setOnClickListener {
+
             dismiss()  // Cierra el diálogo
         }
 
@@ -40,5 +45,15 @@ class DeleteChangeDialog: DialogFragment() {
         alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
 
         return dialog.create()
+    }
+
+    private fun deleteChallenge(){
+
+        val description = binding.deleteDescription.text.toString()
+        val id = 1
+        val challenge = Challenge(id, description)
+        Log.d("deleteDebug", challenge.toString())
+        challengeViewModel.deleteChallenge(challenge)
+
     }
 }

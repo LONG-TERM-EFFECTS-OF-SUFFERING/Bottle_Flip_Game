@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.bottle_flip.Dialogs.ChallengeDialog
+//import com.example.bottle_flip.Dialogs.ChallengeDialog
 import com.example.bottle_flip.databinding.GameBinding
 
 class Game : Fragment() {
@@ -26,6 +26,6 @@ class Game : Fragment() {
 
     //Function to show the challenge dialog (Use this function)
     private fun showChallengeDialog() {
-        ChallengeDialog.showDialogChallenge(requireContext(), this)
+       // ChallengeDialog.showDialogChallenge(requireContext(), this)
     }
 }

@@ -47,6 +47,7 @@ class Challenge : Fragment() {
         fabAddChallenge.setOnClickListener {
             // Navegar al fragmento de agregar reto
             findNavController().navigate(R.id.action_challenges_to_addChangeDialog)
+
         }
 
         // Configurar los insets de la ventana

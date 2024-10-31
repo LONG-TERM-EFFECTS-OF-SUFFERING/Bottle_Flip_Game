@@ -3,18 +3,28 @@ package com.example.bottle_flip.view.fragment
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Window
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.bottle_flip.R
 import com.example.bottle_flip.databinding.EditChallengeDialogBinding
-
+import com.example.bottle_flip.model.Challenge
+import com.example.bottle_flip.viewmodel.ChallengeViewModel
 
 
 
 class EditChallengeDialog : DialogFragment() {
 
+    private lateinit var receivedChallenge: Challenge
+    private val challengeViewModel: ChallengeViewModel by viewModels()
     private lateinit var binding: EditChallengeDialogBinding
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+
         val dialog = AlertDialog.Builder(requireContext())
 
         // Inflar el layout existente y obtener el binding
@@ -25,14 +35,18 @@ class EditChallengeDialog : DialogFragment() {
         val buttonCancel = binding.btnCancelar
         val buttonSave = binding.btnGuardar
 
+
+
         // Configurar el botón Cancelar
         buttonCancel.setOnClickListener {
             dismiss()  // Cierra el diálogo
+            findNavController().popBackStack()
         }
 
         // Configurar el botón Guardar
         buttonSave.setOnClickListener {
-            // Aquí puedes guardar los cambios en SQLite
+            Log.d("upDateDebug", "inicio")
+            updateChallenge()
             dismiss()  // Cierra el diálogo
         }
 
@@ -41,5 +55,16 @@ class EditChallengeDialog : DialogFragment() {
         alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
 
         return dialog.create()
+    }
+
+
+    private fun updateChallenge(){
+
+        val description = binding.etDescripcionReto.text.toString()
+        val id = 1
+        val challenge = Challenge(id, description)
+        Log.d("upDateDebug", challenge.toString())
+        challengeViewModel.updateChallenge(challenge)
+
     }
 }
