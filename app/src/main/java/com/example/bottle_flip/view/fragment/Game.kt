@@ -20,11 +20,17 @@ import android.view.animation.RotateAnimation
 import androidx.core.view.isVisible
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.bottle_flip.Dialogs.ChallengeDialog
 import com.example.bottle_flip.databinding.GameBinding
+import com.example.bottle_flip.repository.challengeRepository
+import com.example.bottle_flip.model.Challenge
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class Game : Fragment() {
 
@@ -44,6 +50,7 @@ class Game : Fragment() {
     private lateinit var audioSuspense: MediaPlayer
     private lateinit var binding: GameBinding  //Acceder a los componenetes de la vista principal
     private var isMute: Boolean = true
+    private lateinit var challengeRepository: challengeRepository
 
 
     private val _statusShowDialog = MutableLiveData(false)
@@ -64,6 +71,7 @@ class Game : Fragment() {
     ): View? {
         binding = GameBinding.inflate(inflater)
         binding.lifecycleOwner = this
+        challengeRepository = challengeRepository(requireContext())
         return binding.root
     }
 
@@ -229,32 +237,65 @@ class Game : Fragment() {
         _rotationBotle.value = rotation
     }
 
-    private fun showCountdown() {//Mostrar y ocultar contador
-        binding.countdownText.visibility = View.VISIBLE // Hacer visible el contador
-        binding.countdownText.text = "3" // Comenzar con 3
+//    private fun showCountdown() {//Mostrar y ocultar contador
+//        binding.countdownText.visibility = View.VISIBLE // Hacer visible el contador
+//        binding.countdownText.text = "3" // Comenzar con 3
+//
+//        //deshabilitar el boton mientras esta activo el contador
+//        binding.btnSpin.isEnabled = false
+//
+//         object : CountDownTimer(4000, 1000) {
+//            override fun onTick(millisUntilFinished: Long) {
+//                val secondsRemaining = (millisUntilFinished / 1000).toInt()
+//                binding.countdownText.text =
+//                    secondsRemaining.toString() // Actualiza el texto con el tiempo restante
+//            }
+//
+//            override fun onFinish() {
+//                binding.countdownText.text = "0" // Muestra 0 al final
+//                binding.countdownText.visibility = View.GONE
+//                binding.btnSpin.isEnabled = true
+////                showChallengeDialog()
+//
+////                _statusShowDialog.value = true
+//            }
+//        }.start() // Inicia el temporizador
+//    }
 
-        //deshabilitar el boton mientras esta activo el contador
+    private fun showCountdown() {
+        binding.countdownText.visibility = View.VISIBLE
+        binding.countdownText.text = "3"
         binding.btnSpin.isEnabled = false
 
-         object : CountDownTimer(4000, 1000) {
+        object : CountDownTimer(4000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                val secondsRemaining = (millisUntilFinished / 1000).toInt()
-                binding.countdownText.text =
-                    secondsRemaining.toString() // Actualiza el texto con el tiempo restante
+                binding.countdownText.text = (millisUntilFinished / 1000).toString()
             }
 
             override fun onFinish() {
-                binding.countdownText.text = "0" // Muestra 0 al final
                 binding.countdownText.visibility = View.GONE
                 binding.btnSpin.isEnabled = true
-                showChallengeDialog()
-//                _statusShowDialog.value = true
+                loadChallenge()
             }
-        }.start() // Inicia el temporizador
+        }.start()
     }
 
-    private fun showChallengeDialog(){
-        ChallengeDialog.showDialogChallenge(requireContext(), this)
+    private fun loadChallenge() {
+        lifecycleScope.launch {
+            val challenge = getRandomChallengeFromDatabase()
+            if (challenge != null) {
+                ChallengeDialog.showDialogChallenge(requireContext(), this@Game, challenge.description)
+            } else {
+                ChallengeDialog.showDialogChallenge(requireContext(), this@Game, "No hay retos disponibles")
+            }
+        }
+    }
+
+    private suspend fun getRandomChallengeFromDatabase(): Challenge? {
+        return withContext(Dispatchers.IO) {
+            val challenges = challengeRepository.getListChallenge()
+            if (challenges.isNotEmpty()) challenges.random() else null
+        }
     }
 
     fun statusShowDialog(status: Boolean) {

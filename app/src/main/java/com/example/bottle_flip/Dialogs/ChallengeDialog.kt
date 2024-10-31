@@ -20,7 +20,8 @@ class ChallengeDialog {
     companion object {
         fun showDialogChallenge(
             context: Context,
-            fragment: androidx.fragment.app.Fragment
+            fragment: androidx.fragment.app.Fragment,
+            challengeText: String
         ) {
             val inflater = LayoutInflater.from(context)
             val binding = DialogChallengeBinding.inflate(inflater)
@@ -41,7 +42,7 @@ class ChallengeDialog {
             }
 
             // Get a random challenge from the local database (Simulated)
-            binding.tvChallenge.text = getRandomChallenge()
+            binding.tvChallenge.text = challengeText
 
             // Button to close the dialog
             binding.btnClose.setOnClickListener {
