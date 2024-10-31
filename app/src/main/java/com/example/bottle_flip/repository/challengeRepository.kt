@@ -1,24 +1,30 @@
 package com.example.bottle_flip.repository
 import android.content.Context
 import android.util.Log
-import com.example.bottle_flip.data.challengeDB
-import com.example.bottle_flip.data.challengeDao
-import com.example.bottle_flip.model.challenge
+import com.example.bottle_flip.data.ChallengeDB
+import com.example.bottle_flip.data.ChallengeDao
+import com.example.bottle_flip.model.Challenge
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class challengeRepository(val context: Context){
 
-    private var challengeDao:challengeDao = challengeDB.getDatabase(context).challengeDao()
+    private var challengeDao:ChallengeDao = ChallengeDB.getDatabase(context).challengeDao()
 
-     suspend fun savechallenge(challenge:challenge){
-         withContext(Dispatchers.IO){
-             challengeDao.saveInventory(challenge)
-             Log.d("repository", "Challenge saved: descripcion='${challenge.description}'")
-         }
-     }
+    suspend fun savechallenge(challenge: Challenge) {
+        withContext(Dispatchers.IO) {
+            Log.d("repositoryDebug", challenge.toString())
+            Log.d("CurrentThread", Thread.currentThread().name)
 
-    suspend fun getListChallenge():MutableList<challenge>{
+            // Guardar el desafío en la base de datos
+            challengeDao.saveChallenge(challenge)
+
+            Log.d("repositoryDebug3", challenge.toString())
+        }
+    }
+
+
+    suspend fun getListChallenge():MutableList<Challenge>{
         return withContext(Dispatchers.IO){
             val challenges = challengeDao.getListchallenge()
             Log.d("ChallengeRepository", challenges.toString()) // Imprimir aquí
@@ -26,16 +32,18 @@ class challengeRepository(val context: Context){
         }
     }
 
-    suspend fun deletechallenge(challenge: challenge){
+    suspend fun deletechallenge(challenge: Challenge){
         withContext(Dispatchers.IO){
             challengeDao.deletechallenge(challenge)
 
         }
     }
 
-    suspend fun updateRepositoy(challenge: challenge){
+    suspend fun updateRepositoy(challenge: Challenge){
         withContext(Dispatchers.IO){
             challengeDao.updatechallenge(challenge)
+            Log.d("repositoryDebug", challenge.toString())
+
         }
     }
 

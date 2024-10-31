@@ -29,7 +29,7 @@
         android:id="@+id/etDescripcionReto"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Descripción del reto"
+        android:hint="Escriba el reto"
         app:layout_constraintTop_toBottomOf="@id/Title"
         app:layout_constraintStart_toStartOf="parent"
         android:backgroundTint="@android:color/holo_orange_light"
@@ -54,7 +54,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/holo_orange_light"
-            android:text="Cancelar" />
+            android:text="Cancelar"
+            android:textColor="@android:color/white"/>
 
         <!-- Espacio entre los botones -->
         <Space
@@ -67,7 +68,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Guardar"
-            android:backgroundTint="@android:color/holo_orange_light"/>
+            android:enabled="true"
+            android:backgroundTint="@android:color/holo_orange_light"
+            android:textColor="@android:color/white"/>
 
     </LinearLayout>
 

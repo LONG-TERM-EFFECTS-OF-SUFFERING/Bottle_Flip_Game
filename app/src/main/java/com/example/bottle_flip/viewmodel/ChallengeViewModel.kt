@@ -6,11 +6,11 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.bottle_flip.model.challenge
-import com.example.bottle_flip.data.challengeDB
+import com.example.bottle_flip.model.Challenge
+import com.example.bottle_flip.data.ChallengeDB
 import com.example.bottle_flip.repository.challengeRepository
 import kotlinx.coroutines.launch
-import com.example.bottle_flip.data.challengeDao
+import com.example.bottle_flip.data.ChallengeDao
 
 
 class ChallengeViewModel(application: Application) : AndroidViewModel(application) {
@@ -19,32 +19,35 @@ class ChallengeViewModel(application: Application) : AndroidViewModel(applicatio
     private val challengeRepository = challengeRepository(context)
 
 
-    private val _listChallenge = MutableLiveData<MutableList<challenge>>()
-    val listChallenge: LiveData<MutableList<challenge>> get() = _listChallenge
+    private val _listChallenge = MutableLiveData<MutableList<Challenge>>()
+    val listChallenge: LiveData<MutableList<Challenge>> get() = _listChallenge
 
     private val _progresState = MutableLiveData(false)
     val progresState: LiveData<Boolean> = _progresState
 
-    fun savechallenge(challenge: challenge) {
+    fun saveChallenge(challenge: Challenge) {
         viewModelScope.launch {
-            Log.d("viewModel","ViewModel")
-            _progresState.value = true
+            Log.d("viewModelDebug", challenge.toString())
+            _progresState.value = true // Inicia el progreso
+
             try {
-                challengeRepository.savechallenge(challenge)
-                Log.d("viewModel","ViewModel")
-                _progresState.value = false
+                challengeRepository.savechallenge(challenge) // Llama al repositorio
+                Log.d("viewModel", "Desafío guardado: ${challenge.toString()}")
             } catch (e: Exception) {
-                _progresState.value = false
+                Log.e("viewModelError", "Error al guardar el desafío: ${e.message}")
+            } finally {
+                _progresState.value = false // Termina el progreso
             }
         }
     }
+
 
     fun getListChallenge() {
         viewModelScope.launch {
             _progresState.value = true
             try {
                 _listChallenge.value = challengeRepository.getListChallenge()
-                Log.d("ChallengeViewModel", "List of challenges: ${_listChallenge.value}")
+               // Log.d("ChallengeViewModel", "List of challenges: ${_listChallenge.value}")
                 _progresState.value = false
             } catch (e: Exception) {
                 _progresState.value = false
@@ -53,7 +56,7 @@ class ChallengeViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
 
-    fun challengeInventory(challenge: challenge) {
+    fun deleteChallenge(challenge: Challenge) {
         viewModelScope.launch {
             _progresState.value = true
             try {
@@ -66,11 +69,12 @@ class ChallengeViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
 
-    fun updateInventory(challenge: challenge) {
+    fun updateChallenge(challenge: Challenge) {
         viewModelScope.launch {
             _progresState.value = true
             try {
                 challengeRepository.updateRepositoy(challenge)
+                Log.d("viewModel", challenge.toString())
                 _progresState.value = false
             } catch (e: Exception) {
                 _progresState.value = false
