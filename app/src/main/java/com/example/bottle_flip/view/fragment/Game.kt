@@ -45,13 +45,9 @@ class Game : Fragment() {
     private lateinit var navController: NavController
     private lateinit var audioBackground: MediaPlayer
     private lateinit var audioSpinBottle: MediaPlayer
-    private lateinit var audioShowChallenge: MediaPlayer
-    private lateinit var audioButton: MediaPlayer
-    private lateinit var audioSuspense: MediaPlayer
     private lateinit var binding: GameBinding  //Acceder a los componenetes de la vista principal
     private var isMute: Boolean = true
     private lateinit var challengeRepository: challengeRepository
-
 
     private val _statusShowDialog = MutableLiveData(false)
     val statusShowDialog: LiveData<Boolean> get() = _statusShowDialog
@@ -148,9 +144,6 @@ class Game : Fragment() {
     private fun media() {
         audioBackground = MediaPlayer.create(context, R.raw.background_audio)
         audioSpinBottle = MediaPlayer.create(context, R.raw.audio_bottle)
-        //audioShowChallenge = MediaPlayer.create(context, R.raw.audio_challenge)
-        //audioButton = MediaPlayer.create(context, R.raw.audio_button)
-        //audioSuspense = MediaPlayer.create(context, R.raw.audio_suspense)
         audioBackground.start()
     }
 

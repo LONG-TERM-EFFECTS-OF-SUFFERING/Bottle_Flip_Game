@@ -30,6 +30,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Escriba el reto"
+        android:textColorHint="@color/background"
+        android:textColor="@android:color/black"
         app:layout_constraintTop_toBottomOf="@id/Title"
         app:layout_constraintStart_toStartOf="parent"
         android:backgroundTint="@android:color/holo_orange_light"
