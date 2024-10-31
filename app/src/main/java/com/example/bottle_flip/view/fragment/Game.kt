@@ -234,6 +234,9 @@ class Game : Fragment() {
         binding.countdownText.visibility = View.VISIBLE // Hacer visible el contador
         binding.countdownText.text = "3" // Comenzar con 3
 
+        //deshabilitar el boton mientras esta activo el contador
+        binding.btnSpin.isEnabled = false
+
          object : CountDownTimer(4000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val secondsRemaining = (millisUntilFinished / 1000).toInt()
@@ -244,6 +247,7 @@ class Game : Fragment() {
             override fun onFinish() {
                 binding.countdownText.text = "0" // Muestra 0 al final
                 binding.countdownText.visibility = View.GONE
+                binding.btnSpin.isEnabled = true
                 showChallengeDialog()
 //                _statusShowDialog.value = true
             }
