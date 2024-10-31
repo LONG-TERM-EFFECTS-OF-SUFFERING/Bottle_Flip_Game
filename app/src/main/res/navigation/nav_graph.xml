@@ -63,7 +63,7 @@
 		android:id="@+id/deleteChangeDialog"
 		android:name="com.example.bottle_flip.view.fragment.DeleteChangeDialog"
 		android:label="DeleteChangeDialog" />
-	<fragment
+	<dialog
 		android:id="@+id/addChangeDialog"
 		android:name="com.example.bottle_flip.view.fragment.AddChangeDialog"
 		android:label="AddChangeDialog" />
