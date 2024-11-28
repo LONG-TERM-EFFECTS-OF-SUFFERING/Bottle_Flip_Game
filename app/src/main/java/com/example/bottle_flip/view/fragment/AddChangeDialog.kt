@@ -51,13 +51,10 @@ class AddChangeDialog : Fragment() {
                     if (textEntered)
                         ContextCompat.getColor(requireContext(), android.R.color.white) // Color del texto cuando está habilitado
                     else
-                        ContextCompat.getColor(requireContext(), android.R.color.black) //
+                        ContextCompat.getColor(requireContext(), android.R.color.black)
                 )
 
             }
-
-
-
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
@@ -67,8 +64,6 @@ class AddChangeDialog : Fragment() {
 
             }
         })
-
-
     }
 
     private fun controladores() {
@@ -94,8 +89,5 @@ class AddChangeDialog : Fragment() {
 
     private fun validarDatos() {
         val listEditText = listOf(binding.etDescripcionReto)
-
-
     }
-
 }
